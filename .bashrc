@@ -173,7 +173,10 @@ function _git()
       exit 1
       echo "Git's off"
    fi
-  
+
+   if [[ $2 -eq "token" ]]
+      read t
+      read l 
 }
 
 function _does()
