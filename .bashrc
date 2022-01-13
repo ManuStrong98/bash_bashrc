@@ -176,7 +176,8 @@ function _git()
 
    if [[ $2 -eq "token" ]]
       read t
-      read l 
+      echo "el link de tu repositorio, excepto el protocolo de envio: "
+      read -p l
 }
 
 function _does()
