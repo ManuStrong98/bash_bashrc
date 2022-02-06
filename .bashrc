@@ -63,6 +63,20 @@ PROMPT_ALTERNATIVE=twoline
 NEWLINE_BEFORE_PROMPT=yes
 # STOP KALI CONFIG VARIABLES
 
+# ediición de Manu
+
+
+
+RED='\033[1;31m'
+NC='\033[0m' # No Color
+#para que funciones esto lo saque de:
+# https://gist.github.com/justintv/168835 del chico payam54
+
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+################ fin de la edicion manu
 if [ "$color_prompt" = yes ]; then
     # override default virtualenv indicator in prompt
     VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -77,7 +91,8 @@ if [ "$color_prompt" = yes ]; then
     fi
     case "$PROMPT_ALTERNATIVE" in
         twoline)                # MANU_MANU_CREO QUE AQUI HE EDITADO XD
-	   PS1="\[\033[38;5;196m\]┌──\[$(tput sgr0)\]\[\033[38;5;44m\](\w/)\[$(tput sgr0)\][\[$(tput sgr0)\]\[\033[38;5;46m\]\t\[$(tput sgr0)\]]\[$(tput sgr0)\]\[\033[38;5;51m\] \d \[$(tput sgr0)\]\n\[$(tput sgr0)\]\[\033[38;5;190m\]\[\033[38;5;196m\]└─≽\[$(tput sgr0)\]🐒\[$(tput sgr0)\] \[$(tput sgr0)\]";;
+	    export  PS1="\[\033[38;5;196m\]┌──\[$(tput sgr0)\]\[\033[38;5;44m\](\w/)\[$(tput sgr0)\][\[$(tput sgr0)\]\[\033[38;5;46m\]\t\[$(tput sgr0)\]]\[$(tput sgr0)\]\[\033[38;5;51m\] \d \[$(tput sgr0)\]\n\[$(tput sgr0)\]\[\033[38;5;190m\]\[\033[38;5;196m\]└─≽\[$(tput sgr0)\]🐒\[$(tput sgr0)\] \[$(tput sgr0)\]" \
+	       PS1="\[\033[38;5;196m\]┌──\[$(tput sgr0)\]\[\033[38;5;44m\](\w/)\[$(tput sgr0)\][\[$(tput sgr0)\]\[\033[38;5;46m\]\t\[$(tput sgr0)\]]\[$(tput sgr0)\]\[\033[38;5;51m\]$(tput sgr0)\d${RED}\$(parse_git_branch) $(tput sgr0)\[\]\n\[$(tput sgr0)\]\[\033[38;5;190m\]\[\033[38;5;196m\]└─≽\[$(tput sgr0)\]🐒\[$(tput sgr0)\] \[$(tput sgr0)\]";;
         oneline)
 
             PS1='${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV)) }${debian_chroot:+($debian_chroot)}'$info_color'\u@\h\[\033[00m\]:'$prompt_color'\[\033[01m\]\w\[\033[00m\]\$ ';;
@@ -172,12 +187,12 @@ function _git()
    elif [[ $1 -eq "off" ]]; then
       exit 1
       echo "Git's off"
-   fi
-
-   if [[ $2 -eq "token" ]]
+   
+   elif [[ $2 -eq "token" ]]; then
       read t
-      echo "el link de tu repositorio, excepto el protocolo de envio: "
-      read -p l
+      read l
+   fi
+   
 }
 
 function _does()
@@ -188,26 +203,3 @@ function _does()
       for (( c=1; c <= $2; c++ )); do  $1 ; done
    fi
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
